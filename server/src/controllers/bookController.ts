@@ -5,6 +5,7 @@ export async function getBooks(req: Request, res: Response) {
 }
 export async function createBooks(req: Request, res: Response) {
   const newBook = new Book({
+    imageUrl: req.body.imageUrl,
     title: req.body.title,
     author: req.body.author,
   });
@@ -18,7 +19,11 @@ export async function getBookById(req: Request, res: Response) {
 export async function updateBooks(req: Request, res: Response) {
   const updateBook = await Book.findByIdAndUpdate(
     req.params.bookid,
-    { title: req.body.title, author: req.body.author },
+    {
+      imageUrl: req.body.imageUrl,
+      title: req.body.title,
+      author: req.body.author,
+    },
     {
       new: true,
     }
