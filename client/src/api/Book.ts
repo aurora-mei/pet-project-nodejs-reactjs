@@ -1,6 +1,7 @@
 import { API_URL } from "./config";
 export type DBook = {
   _id?: string;
+  imageUrl?: string;
   title?: string;
   author?: string;
 };
@@ -16,7 +17,7 @@ export async function createBooks(book: DBook) {
   const response = await fetch(`${API_URL}/books`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ title: book.title, author: book.author }),
+    body: JSON.stringify({ imageUrl: book.imageUrl, title: book.title, author: book.author }),
   });
   return await response.json();
 }
@@ -24,7 +25,7 @@ export async function updateBooks(book: DBook) {
   const response = await fetch(`${API_URL}/books/${book._id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ title: book.title, author: book.author }),
+    body: JSON.stringify({ imageUrl: book.imageUrl, title: book.title, author: book.author }),
   });
   return await response.json();
 }
