@@ -17,7 +17,11 @@ export async function createBooks(book: DBook) {
   const response = await fetch(`${API_URL}/books`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ imageUrl: book.imageUrl, title: book.title, author: book.author }),
+    body: JSON.stringify({
+      imageUrl: book.imageUrl,
+      title: book.title,
+      author: book.author,
+    }),
   });
   return await response.json();
 }
@@ -25,12 +29,18 @@ export async function updateBooks(book: DBook) {
   const response = await fetch(`${API_URL}/books/${book._id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ imageUrl: book.imageUrl, title: book.title, author: book.author }),
+    body: JSON.stringify({
+      imageUrl: book.imageUrl,
+      title: book.title,
+      author: book.author,
+    }),
   });
   return await response.json();
 }
 export async function deleteBooks(id: string) {
-  await fetch(`${API_URL}/books/${id}`, {
+  const response = await fetch(`${API_URL}/books/${id}`, {
     method: "DELETE",
   });
+  const data = await response.json();
+  return await data._id;
 }
