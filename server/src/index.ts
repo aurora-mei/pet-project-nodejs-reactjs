@@ -1,9 +1,8 @@
 import dotenv from "dotenv";
 dotenv.config(); //config file .env
 
-import express, { Request, Response } from "express";
+import express from "express";
 import mongoose from "mongoose";
-import Book from "./models/Book";
 import cors from "cors";
 import {
   createBooks,
@@ -11,7 +10,7 @@ import {
   getBooks,
   updateBooks,
   getBookById,
-} from "./controllers/bookController";
+} from "./controllers/BookController";
 const app = express();
 const PORT = 3000;
 
