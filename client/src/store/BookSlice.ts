@@ -5,7 +5,6 @@ import {
   createBooks,
   updateBooks,
   deleteBooks,
-  getBookById,
 } from "../api/Book";
 import { uploadImage } from "../api/UploadImage";
 //1.import
@@ -46,8 +45,8 @@ export const deleteBook = createAsyncThunk(
 );
 export const uploadImageBook = createAsyncThunk(
   "books/uploadImage",
-  async (file: File) => {
-    return await uploadImage(file);
+  async (file?: File) => {
+    return await uploadImage(file!);
   }
 );
 const bookSlice = createSlice({
