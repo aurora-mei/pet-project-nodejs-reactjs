@@ -1,9 +1,9 @@
 import { Cloudinary } from "@cloudinary/url-gen/index";
-
+import { CLOUD_NAME, CLOUDINARY_URL } from "./key";
 // Configure Cloudinary
 const cloudinary = new Cloudinary({
   cloud: {
-    cloudName: "dfoq1dvce", // Thay bằng cloud name của bạn
+    cloudName: CLOUD_NAME, // Thay bằng cloud name của bạn
   },
 });
 export async function uploadImage(file: File) {
@@ -11,12 +11,9 @@ export async function uploadImage(file: File) {
   formData.append("file", file);
   formData.append("upload_preset", "preset1");
 
-  const res = await fetch(
-    "https://api.cloudinary.com/v1_1/dfoq1dvce/image/upload",
-    {
-      method: "POST",
-      body: formData,
-    }
-  );
+  const res = await fetch(CLOUDINARY_URL, {
+    method: "POST",
+    body: formData,
+  });
   return await res.json();
 }

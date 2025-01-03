@@ -7,6 +7,7 @@ import { RootState, AppDispatch } from "./store/Store.ts";
 import { useSelector, useDispatch } from "react-redux";
 import BookCard from "./components/BookCard.tsx";
 import FormBook from "./components/BookForm.tsx";
+import NavbarLogin from "./components/Navbar.tsx";
 import {
   createBook,
   updateBook,
@@ -50,21 +51,12 @@ function App() {
     const data = await dispatch(uploadImageBook(file));
     return data.payload.url;
   }
-  async function handlerCreateBook(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    dispatch(createBook(book));
-    setBook({ _id: "", title: "", author: "" });
-  }
-  async function handlerUpdateBook(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    dispatch(updateBook(updatedBook));
-    closeModal();
-  }
 
   return (
     <div className="App">
+      <NavbarLogin />
       {loading && <div>Loading...</div>}
-      <div className="grid grid-cols-4 gap-5 ">
+      <div className="grid grid-cols-4 gap-5 mt-16">
         {books.map((book) => (
           <BookCard
             key={book._id}
@@ -88,7 +80,6 @@ function App() {
           onSubmit={(book) => {
             console.log("create book:", book);
             dispatch(createBook(book));
-            setBook({ _id: "", title: "", author: "", imageUrl: "" });
           }}
           loading={loading}
           onFileUpload={handleFileUpload}
@@ -101,7 +92,6 @@ function App() {
           onSubmit={(updatedBook) => {
             console.log("update book:", updatedBook);
             dispatch(updateBook(updatedBook));
-            setUpdatedBook({ _id: "", title: "", author: "", imageUrl: "" });
             closeModal();
           }}
           loading={loading}

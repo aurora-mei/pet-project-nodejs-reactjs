@@ -32,13 +32,14 @@ const FormBook: React.FC<FormBookProps> = ({
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     onSubmit(formData);
+    setFormData({ _id: "", imageUrl: "", title: "", author: "" });
   };
 
   return (
     <form
       key={formData._id}
       onSubmit={handleSubmit}
-      className="p-4 md:p-5 bg-white rounded-lg text-left my-4 w-72"
+      className="p-4 md:p-5 bg-white rounded-lg text-left my-4 w-80"
     >
       <h2 className="text-xl font-semibold text-gray-700 mb-4 text-center">
         {formData._id ? "Update Book" : "Create Book"}
