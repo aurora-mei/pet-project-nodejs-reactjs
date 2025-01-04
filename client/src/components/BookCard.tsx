@@ -15,7 +15,7 @@ const BookCard = ({ book, onEdit, onDelete }: BookCardProps) => {
         <button
           type="button"
           title="n"
-          className="border border-none"
+          className="border border-none outline-none focus:outline-none "
           onClick={onEdit}
         >
           <i className="fa-solid fa-pen-to-square" />
@@ -23,7 +23,7 @@ const BookCard = ({ book, onEdit, onDelete }: BookCardProps) => {
         <button
           type="button"
           title="n"
-          className="border border-none"
+          className="border border-none outline-none focus:outline-none bg-transparent"
           onClick={onDelete}
         >
           <i className="fa-solid fa-x " />
